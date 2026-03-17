@@ -39,5 +39,44 @@ def get_scenarios():
             root_cause="fix_network",
             valid_actions=["retry"],
             metrics={"latency": "3000ms", "packet_loss": "20%"}
+        ),
+
+        Incident(
+            name="memory_leak_chain",
+            stages=[
+                (1, "INFO", "Service started"),
+                (2, "WARNING", "Memory usage increasing"),
+                (2, "ERROR", "Memory usage at 95%"),
+                (2, "ERROR", "Service crashed due to OOM")
+            ],
+            root_cause="restart_service",
+            valid_actions=["scale"],
+            metrics={"memory": "95%", "cpu": "40%"}
+        ),
+
+        Incident(
+            name="disk_full_chain",
+            stages=[
+                (1, "INFO", "Writing logs"),
+                (2, "WARNING", "Disk usage at 85%"),
+                (2, "ERROR", "Disk full"),
+                (2, "ERROR", "Cannot write logs / service failing")
+            ],
+            root_cause="clear_disk",
+            valid_actions=["restart_service"],
+            metrics={"disk": "100%", "cpu": "30%"}
+        ),
+
+        Incident(
+            name="auth_failure_chain",
+            stages=[
+                (1, "INFO", "User login attempt"),
+                (2, "WARNING", "Token validation failed"),
+                (2, "ERROR", "Unauthorized access (401)"),
+                (2, "ERROR", "Multiple auth failures detected")
+            ],
+            root_cause="refresh_token",
+            valid_actions=["retry"],
+            metrics={"auth_errors": "high", "requests": "normal"}
         )
     ]
