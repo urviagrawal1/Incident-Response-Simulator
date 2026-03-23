@@ -2,6 +2,7 @@ import json
 import os
 from incident import Incident
 
+
 def get_scenarios():
     return [
 
