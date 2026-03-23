@@ -1,8 +1,7 @@
 def handle_action(action, incident, state):
-    
-    # Monitoring commands
+
     if action == "check_logs":
-        print("\n--- Recent Logs ---")
+        print("\n--- Logs ---")
         for log in incident.logs[-5:]:
             print(log)
         return False
@@ -13,19 +12,17 @@ def handle_action(action, incident, state):
             print(f"{k}: {v}")
         return False
 
-    # Root cause fix
     if action == incident.root_cause:
         print("✅ Root cause fixed!")
         incident.resolved = True
         return True
 
-    # Symptom fixes
     elif action in incident.valid_actions:
-        print("⚠️ Temporary fix applied (symptom fixed, not root cause)")
+        print("⚠️ Temporary fix (not root cause)")
         state["wrong"] += 1
         return False
 
     else:
-        print("❌ Invalid action")
+        print("❌ Wrong action")
         state["wrong"] += 1
         return False

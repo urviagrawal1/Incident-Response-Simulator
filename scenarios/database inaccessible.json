@@ -1,0 +1,15 @@
+{
+    "name": "database inaccessible",
+    "stages": [
+        [
+            8,
+            "medium",
+            "The database is inaccessible"
+        ]
+    ],
+    "root_cause": "restart database",
+    "valid_actions": [
+        "retry"
+    ],
+    "metrics": {}
+}

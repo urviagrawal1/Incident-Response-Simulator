@@ -1,0 +1,25 @@
+{
+    "name": "stack overflow",
+    "stages": [
+        [
+            6,
+            "Hard",
+            "Stack is overflowing"
+        ],
+        [
+            2,
+            "done",
+            "done"
+        ]
+    ],
+    "root_cause": "clear cache",
+    "valid_actions": [
+        "retry",
+        "restart",
+        "clear cache"
+    ],
+    "metrics": {
+        "memory": "100%",
+        "cpu": "100%"
+    }
+}
