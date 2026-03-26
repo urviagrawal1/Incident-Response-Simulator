@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chaos Incident Simulator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ── HEADER ── -->
+  <header class="header">
+    <div class="logo">
+      <div class="logo-bolt"></div>
+      CHAOS<span class="logo-slash">/</span>SIM
+    </div>
+    <div class="header-divider"></div>
+    <div class="header-subtitle">Incident Response Trainer</div>
+    <div class="header-right">
+      <div class="live-dot" id="live-dot"></div>
+      <span id="system-status">SYSTEM IDLE</span>
+      <span class="header-sep">|</span>
+      <span id="session-resolved">0 resolved</span>
+    </div>
+  </header>
+
+  <!-- ── WORKSPACE ── -->
+  <div class="workspace">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <button class="sidebar-toggle" id="sidebar-toggle" onclick="toggleSidebar()" title="Toggle sidebar">◀</button>
+
+      <!-- Collapsed icon strip (visible only when sidebar is collapsed) -->
+      <div class="sidebar-icon-strip" id="icon-strip"></div>
+
+      <!-- Full sidebar content -->
+      <div class="sidebar-inner" id="sidebar-inner">
+        <div class="sidebar-head">
+          <span class="sidebar-head-title">Incidents</span>
+          <span class="incident-count-pill" id="count-pill">20</span>
+        </div>
+        <div class="sidebar-search">
+          <input
+            type="text"
+            placeholder="Search incidents..."
+            id="search-input"
+            oninput="filterList(this.value)"
+          >
+        </div>
+        <div class="incidents-scroll" id="incidents-list"></div>
+      </div>
+    </aside>
+
+    <!-- STUDY PANEL (slides in when an incident is clicked) -->
+    <div class="study-panel hidden" id="study-panel">
+      <div class="study-inner" id="study-inner">
+        <!-- Populated dynamically by renderStudy() in app.js -->
+      </div>
+    </div>
+
+    <!-- CENTER PANEL (hero or active simulation) -->
+    <main class="center" id="center">
+      <!-- Populated dynamically by renderHero() or renderSimView() in app.js -->
+    </main>
+
+  </div>
+
+  <!-- Toast container -->
+  <div id="toast-host"></div>
+
+  <!-- Data + logic -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
